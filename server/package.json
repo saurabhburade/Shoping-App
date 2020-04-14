@@ -1,0 +1,27 @@
+{
+  "name": "shopping-app",
+  "version": "1.0.0",
+  "description": "Full stack shopping app with payment integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "\u001b[A\u001b[B\u001b[A\u001b[C\u001b[B\u001b[DSaurabh Burade",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.3",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.9.6",
+    "mongoose-unique-validator": "^2.0.3",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "stripe": "^8.38.0",
+    "uuid": "^7.0.3"
+  }
+}
