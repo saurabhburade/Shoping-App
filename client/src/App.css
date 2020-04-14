@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+  
+}
+*::-webkit-scrollbar{
+  display: none;
+  
+}
+.card-container{
+/* height: 500px; */
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.card-container::-webkit-scrollbar{
+  display: block;
+  width: 10px;
+  background: rgb(243, 243, 243);
+}
+.card-container::-webkit-scrollbar-thumb{
+  background: #18110677;
+  border-radius: 40px;
+
+}

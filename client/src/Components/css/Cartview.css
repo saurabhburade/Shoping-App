@@ -1,0 +1,11 @@
+.cart-view-container{
+    display: flex;
+    justify-content: space-between;
+}
+.cart-precess{
+   width: 45%;
+   
+   border: 1px solid rgb(189, 183, 183);
+   margin: 1% 5%;
+   padding: 2%;
+}

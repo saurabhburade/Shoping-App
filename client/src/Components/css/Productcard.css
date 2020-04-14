@@ -1,0 +1,44 @@
+.prod-card{
+    width: 15%;
+    height: 320px;
+   border: 1px solid #b4afaf;
+   border-radius: 5px;
+   padding: 1%;
+   margin:3% 5% ;
+   transition-duration: 500ms;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+}
+.prod-img-container{
+    width: 100%;
+    height: 100%;
+     display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.prod-card:hover{
+   box-shadow: 0px 0px 15px #e1ddf1;
+    
+}
+.prod-img{
+width: 150px;
+}
+.prod-title{
+    font-weight: 700;
+}
+.prod-price{
+    width:fit-content;
+    font-weight: 600;
+    background: #e7e2e2;
+    padding: 5%;
+    border-radius: 20%;
+}
+.prod-price-title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    
+}

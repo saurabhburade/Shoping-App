@@ -1,0 +1,588 @@
+{
+  on: [Function: bound addListener],
+  once: [Function: bound once],
+  off: [Function: bound removeListener],
+  _api: {
+    auth: 'Bearer sk_test_4dtRajw2ujrNWT3pHjxG9CGx00fsLCesJI',
+    host: 'api.stripe.com',
+    port: '443',
+    protocol: 'https',
+    basePath: '/v1/',
+    version: null,
+    timeout: 80000,
+    maxNetworkRetries: 0,
+    agent: null,
+    dev: false
+  },
+  accounts: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: '',
+    path: [Function]
+  },
+  account: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: '',
+    path: [Function]
+  },
+  accountLinks: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'account_links',
+    path: [Function],
+    create: [Function]
+  },
+  applePayDomains: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'apple_pay/domains',
+    path: [Function],
+    create: [Function],
+    del: [Function],
+    list: [Function],
+    retrieve: [Function]
+  },
+  applicationFees: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'application_fees',
+    path: [Function],
+    list: [Function],
+    retrieve: [Function]
+  },
+  balance: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'balance',
+    path: [Function]
+  },
+  balanceTransactions: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'balance_transactions',
+    path: [Function],
+    list: [Function],
+    retrieve: [Function]
+  },
+  charges: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'charges',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  countrySpecs: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'country_specs',
+    path: [Function],
+    list: [Function],
+    retrieve: [Function]
+  },
+  coupons: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'coupons',
+    path: [Function],
+    create: [Function],
+    del: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  creditNotes: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'credit_notes',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  customers: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'customers',
+    path: [Function],
+    create: [Function],
+    del: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  disputes: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'disputes',
+    path: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  ephemeralKeys: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'ephemeral_keys',
+    path: [Function],
+    del: [Function]
+  },
+  events: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'events',
+    path: [Function],
+    list: [Function],
+    retrieve: [Function]
+  },
+  exchangeRates: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'exchange_rates',
+    path: [Function],
+    list: [Function],
+    retrieve: [Function]
+  },
+  files: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'files',
+    path: [Function],
+    list: [Function],
+    retrieve: [Function]
+  },
+  fileLinks: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'file_links',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  invoices: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'invoices',
+    path: [Function],
+    create: [Function],
+    del: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  invoiceItems: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'invoiceitems',
+    path: [Function],
+    create: [Function],
+    del: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  issuerFraudRecords: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'issuer_fraud_records',
+    path: [Function],
+    list: [Function],
+    retrieve: [Function]
+  },
+  mandates: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'mandates',
+    path: [Function],
+    retrieve: [Function]
+  },
+  oauth: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: '',
+    path: [Function]
+  },
+  orders: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'orders',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  orderReturns: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'order_returns',
+    path: [Function],
+    list: [Function],
+    retrieve: [Function]
+  },
+  paymentIntents: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'payment_intents',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  paymentMethods: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'payment_methods',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  payouts: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'payouts',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  plans: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'plans',
+    path: [Function],
+    create: [Function],
+    del: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  products: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'products',
+    path: [Function],
+    create: [Function],
+    del: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  refunds: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'refunds',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  reviews: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'reviews',
+    path: [Function],
+    list: [Function],
+    retrieve: [Function]
+  },
+  setupIntents: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'setup_intents',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  skus: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'skus',
+    path: [Function],
+    create: [Function],
+    del: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  sources: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'sources',
+    path: [Function],
+    create: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  subscriptions: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'subscriptions',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function],
+    del: [Function]
+  },
+  subscriptionItems: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'subscription_items',
+    path: [Function],
+    create: [Function],
+    del: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  subscriptionSchedules: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'subscription_schedules',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  taxRates: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'tax_rates',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  tokens: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'tokens',
+    path: [Function],
+    create: [Function],
+    retrieve: [Function]
+  },
+  topups: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'topups',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  transfers: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'transfers',
+    path: [Function],
+    create: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  webhookEndpoints: {
+    _stripe: [Circular],
+    basePath: [Function],
+    resourcePath: 'webhook_endpoints',
+    path: [Function],
+    create: [Function],
+    del: [Function],
+    list: [Function],
+    retrieve: [Function],
+    update: [Function]
+  },
+  checkout: ResourceNamespace {
+    sessions: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'checkout/sessions',
+      path: [Function],
+      create: [Function],
+      list: [Function],
+      retrieve: [Function]
+    }
+  },
+  issuing: ResourceNamespace {
+    authorizations: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'issuing/authorizations',
+      path: [Function],
+      list: [Function],
+      retrieve: [Function],
+      update: [Function]
+    },
+    cards: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'issuing/cards',
+      path: [Function],
+      create: [Function],
+      list: [Function],
+      retrieve: [Function],
+      update: [Function]
+    },
+    cardholders: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'issuing/cardholders',
+      path: [Function],
+      create: [Function],
+      list: [Function],
+      retrieve: [Function],
+      update: [Function]
+    },
+    disputes: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'issuing/disputes',
+      path: [Function],
+      create: [Function],
+      list: [Function],
+      retrieve: [Function],
+      update: [Function]
+    },
+    transactions: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'issuing/transactions',
+      path: [Function],
+      list: [Function],
+      retrieve: [Function],
+      update: [Function]
+    }
+  },
+  radar: ResourceNamespace {
+    earlyFraudWarnings: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'radar/early_fraud_warnings',
+      path: [Function],
+      list: [Function],
+      retrieve: [Function]
+    },
+    valueLists: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'radar/value_lists',
+      path: [Function],
+      create: [Function],
+      del: [Function],
+      list: [Function],
+      retrieve: [Function],
+      update: [Function]
+    },
+    valueListItems: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'radar/value_list_items',
+      path: [Function],
+      create: [Function],
+      del: [Function],
+      list: [Function],
+      retrieve: [Function]
+    }
+  },
+  reporting: ResourceNamespace {
+    reportRuns: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'reporting/report_runs',
+      path: [Function],
+      create: [Function],
+      list: [Function],
+      retrieve: [Function]
+    },
+    reportTypes: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'reporting/report_types',
+      path: [Function],
+      list: [Function],
+      retrieve: [Function]
+    }
+  },
+  sigma: ResourceNamespace {
+    scheduledQueryRuns: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'sigma/scheduled_query_runs',
+      path: [Function],
+      list: [Function],
+      retrieve: [Function]
+    }
+  },
+  terminal: ResourceNamespace {
+    connectionTokens: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'terminal/connection_tokens',
+      path: [Function],
+      create: [Function]
+    },
+    locations: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'terminal/locations',
+      path: [Function],
+      create: [Function],
+      del: [Function],
+      list: [Function],
+      retrieve: [Function],
+      update: [Function]
+    },
+    readers: {
+      _stripe: [Circular],
+      basePath: [Function],
+      resourcePath: 'terminal/readers',
+      path: [Function],
+      create: [Function],
+      del: [Function],
+      list: [Function],
+      retrieve: [Function],
+      update: [Function]
+    }
+  },
+  errors: {
+    generate: [Function: generate],
+    StripeError: [Function: StripeError],
+    StripeCardError: [Function: StripeCardError],
+    StripeInvalidRequestError: [Function: StripeInvalidRequestError],
+    StripeAPIError: [Function: StripeAPIError],
+    StripeAuthenticationError: [Function: StripeAuthenticationError],
+    StripePermissionError: [Function: StripePermissionError],
+    StripeRateLimitError: [Function: StripeRateLimitError],
+    StripeConnectionError: [Function: StripeConnectionError],
+    StripeSignatureVerificationError: [Function: StripeSignatureVerificationError],
+    StripeIdempotencyError: [Function: StripeIdempotencyError],
+    StripeInvalidGrantError: [Function: StripeInvalidGrantError]
+  },
+  webhooks: {
+    DEFAULT_TOLERANCE: 300,
+    constructEvent: [Function: constructEvent],
+    generateTestHeaderString: [Function: generateTestHeaderString],
+    signature: {
+      EXPECTED_SCHEME: 'v1',
+      _computeSignature: [Function: _computeSignature],
+      verifyHeader: [Function: verifyHeader]
+    }
+  },
+  _prevRequestMetrics: [],
+  _enableTelemetry: true
+}
