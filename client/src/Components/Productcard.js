@@ -7,6 +7,9 @@ import {
 import { connect } from "react-redux";
 import { Button} from "antd";
 import "./css/Productcard.css";
+import { addToCart } from "../Redux/user/userActionCreators";
+const SERVER = process.env.REACT_APP_SERVER;
+
 class Productcard extends Component {
   constructor(props) {
     super(props);
@@ -51,16 +54,19 @@ class Productcard extends Component {
         data: this.state.data,
         cartCount: this.state.cartCount
       });
+    // this.props.addToCart();
+      
     }, 500);
 
   };
 
   render() {
+    const API = `${SERVER}/products/`;
    
     return (
       <div className="prod-card">
         <div className="prod-img-container">
-          <img className="prod-img" src={this.props.img} alt="tshirt" />
+          <img className="prod-img" src={API+this.props.img} alt="tshirt" />
         </div>
 
         <div className="prod-detail">
@@ -87,7 +93,7 @@ class Productcard extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    addToCart: data => dispatch({ type: "ADD_TO_CART", payload: data })
+    addToCart: (data) => dispatch(addToCart(data)),
   };
 };
 const mapStateToProps = state => {

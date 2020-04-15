@@ -5,48 +5,33 @@ import { isAuthenticated } from "../../auth/auth";
 import { Redirect } from "react-router-dom";
 import { Button } from "antd";
 import Orderproductcard from "./Orderproductcard";
-import profile from "../images/boy.svg"
+import profile from "../images/boy.svg";
+import { connect } from "react-redux";
+import { fetchProfile } from "../../Redux/user/userActionCreators";
 // const SERVER = process.env.REACT_APP_SERVER;
 class Profiledash extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      data: {},
-      orderGrp: {},
-      charge_keys: [],
       ordersVisible: false,
-      profileVisible: true
+      profileVisible: true,
     };
   }
-  componentWillMount() {
-    fetchDash(localStorage.getItem("jwt"))
-      .then(data => {
-        if (data.data.user) {
-          this.setState({
-            data: data.data.user,
-            orderGrp: data.data.grpOrder,
-            charge_keys: Object.keys(data.data.grpOrder)
-          });
-         
-        }
-      })
-      .catch(err => console.log(err));
-  }
+
+
   ordersClick = () => {
     this.setState({
       ordersVisible: true,
-      profileVisible: false
+      profileVisible: false,
     });
   };
   profileClick = () => {
     this.setState({
       ordersVisible: false,
-      profileVisible: true
+      profileVisible: true,
     });
   };
   render() {
-
     if (!isAuthenticated()) {
       return <Redirect to="/login" />;
     }
@@ -55,11 +40,11 @@ class Profiledash extends Component {
         <div className="user-profile-card">
           <div className="user-card-dash" onClick={this.profileClick}>
             <div className="user-avatar">
-              {this.state.data.fname ? this.state.data.fname.charAt(0) : "U"}
+              {this.props.data.fname ? this.props.data.fname.charAt(0) : "U"}
             </div>
             <div className="user-name">
-              {this.state.data.fname
-                ? this.state.data.fname + " " + this.state.data.lname
+              {this.props.data.fname
+                ? this.props.data.fname + " " + this.props.data.lname
                 : "User Name"}
             </div>
           </div>
@@ -80,20 +65,19 @@ class Profiledash extends Component {
               </div>
               <p>
                 Name :
-                {this.state.data.fname
-                  ? this.state.data.fname + " " + this.state.data.lname
+                {this.props.data.fname
+                  ? this.props.data.fname + " " + this.props.data.lname
                   : "Loading ..."}
               </p>
               <p>
                 Email :
-                {this.state.data.fname ? this.state.data.email : "Loading ..."}
+                {this.props.data.fname ? this.props.data.email : "Loading ..."}
               </p>
             </div>
           ) : this.state.ordersVisible ? (
             <Fragment>
               {" "}
-              {this.state.charge_keys.map(value => {
-
+              {Object.keys(this.props.orderGrp).map((value) => {
                 return (
                   <div className="order-card-container">
                     <div className="products-order-container">
@@ -101,7 +85,7 @@ class Profiledash extends Component {
                         <div className="order-card-header">ORDER DETAILS</div>
 
                         <div className="ordered-products">
-                          {this.state.orderGrp[value].map(v => {
+                          {this.props.orderGrp[value].map((v) => {
                             return (
                               <Orderproductcard
                                 img={v.img}
@@ -128,8 +112,8 @@ class Profiledash extends Component {
                         <br /> At Ad line 1
                       </p>
                       <a
-                      href={"#"}
-                      //  href={`${this.state.paymentData.receipt_url}`}
+                        href={"#"}
+                        //  href={`${this.state.paymentData.receipt_url}`}
                       >
                         <Button type="primary" key="buy">
                           Receipt
@@ -146,5 +130,16 @@ class Profiledash extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    data: state.user.userData,
+    orderGrp: state.user.orderGrp,
+  };
+};
 
-export default Profiledash;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProfile: () => dispatch(fetchProfile(localStorage.getItem("jwt"))),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Profiledash);

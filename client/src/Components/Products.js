@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import apple from "./images/apple.png";
 import Productcard from "./Productcard";
 import { connect } from "react-redux";
-import { fetchProducts } from "../helpers/products.helpers";
+import { fetchShoppingItems } from "../Redux/products/productActionCreators";
 const SERVER = process.env.REACT_APP_SERVER;
 
 class Products extends Component {
@@ -13,32 +13,23 @@ class Products extends Component {
     };
   }
   componentWillMount() {
-    fetchProducts().then(value=>{
-    if (value) {
-      this.setState({
-        data: value.data
-      });
-    }
-    
-    }).catch(err=>{
-      console.log(err);
-    })
+     this.props.fetchProducts();
   }
+
   render() {
-    const API = `${SERVER}/products/`;
 
 
     return (
       <Fragment>
-        {// fetchProducts()
-        this.state.data.map((element, index) => {
+        {
+        this.props.data.map((element, index) => {
           return (
             <Productcard
             key={index}
               title={element.title}
               price={element.price}
               description={element.description}
-              img={API + element.productImagePath}
+              img={ element.productImagePath}
               productId={element._id}
             />
           );
@@ -56,8 +47,13 @@ class Products extends Component {
 
 const mapStateToProps = state => {
   return {
-    data: state.shop
+    data: state.products.shopItems,
   };
 };
-export default connect(mapStateToProps)(Products);
-// export default Products
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchProducts: () => dispatch(fetchShoppingItems()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

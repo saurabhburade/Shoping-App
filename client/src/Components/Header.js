@@ -110,8 +110,7 @@ componentWillMount(){
 }
 const mapStateToProps=state=>{
     return {
-      badgeValue: state.cartCount,
-      products: state.products
+      badgeValue: state.user.cartCount,
     };
 }
 

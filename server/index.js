@@ -27,7 +27,7 @@ connection.once("open", (res) => {
 // .catch(err=>console.log(err);)
 app.use(cors())
 app.use(helmet())
-app.use(morgan())
+app.use(morgan('common'))
 app.use(express.json());
 // app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -48,5 +48,5 @@ app.post("/login", (req, res) => {
 app.use("/products/public/uploads/", express.static("public/uploads"));
 
 app.listen(8000,()=>{
-    console.log("Server is 🔥 ");
+    console.log("Server is 🔥 ")
 })

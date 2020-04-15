@@ -48,7 +48,7 @@ class Login extends Component {
       if (payload&&window!==undefined) {
                 localStorage.setItem("jwt",payload.data.token);
                 localStorage.setItem("logged", true);
-                window.location.href="/user/dashboard"
+                window.location.href="/user/dashboard"   
 
             }
     }).catch(err=>{
