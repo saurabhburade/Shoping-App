@@ -1,4 +1,4 @@
-import { FETCH_PROFILE_LOADING, FETCH_PROFILE_SUCCESS, FETCH_PROFILE_FAIL, FETCH_CART_LOADING, FETCH_CART_SUCCESS, FETCH_CART_FAIL, ADD_TO_CART_SUCCESS, DEC_CART, INC_CART, UPDATE_CART_QUANTITY, UPDATE_CART, SET_CART_TOTAL } from "./userActionTypes";
+import { FETCH_PROFILE_LOADING, FETCH_PROFILE_SUCCESS, FETCH_PROFILE_FAIL, FETCH_CART_LOADING, FETCH_CART_SUCCESS, FETCH_CART_FAIL, ADD_TO_CART_SUCCESS, DEC_CART, INC_CART, UPDATE_CART_QUANTITY, UPDATE_CART, SET_CART_TOTAL, CLEAR_CART } from "./userActionTypes";
 
 const INITIAL_STATE = {
   userData: {},
@@ -69,6 +69,14 @@ export default (state = INITIAL_STATE, action) => {
          
           totalCartPrice: action.payload,
         };
+        case CLEAR_CART:
+               return {
+                 ...state,
+                 userCart: [],
+                 cartCount: 0,
+
+                 totalCartPrice: 0,
+               };
       default:
         return state;
     }

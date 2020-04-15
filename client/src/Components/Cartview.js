@@ -10,6 +10,7 @@ import { Modal, Button, Result } from "antd";
 import { Link } from "react-router-dom";
 import { fetchCart } from "../helpers/cart.helpers";
 import { Spin } from "antd";
+import { updateCart, clearCart } from "../Redux/user/userActionCreators";
 const SERVER = process.env.REACT_APP_SERVER;
 
 class Cartview extends Component {
@@ -17,24 +18,10 @@ class Cartview extends Component {
     super(props);
     this.state = {
       data: [],
-      // loading: false,
       visible: false,
       paymentData: {},
       visibleError: false,
     };
-    console.log("Cart COnstructor ******************");
-  }
-  componentWillMount() {
-    // fetchCart()
-    //   .then((data) => {
-    //     if (data.data.arr) {
-    //       this.props.fetchCart(data.data.arr);
-    //       this.setState({
-    //         data: data.data.arr,
-    //       });
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
   }
   makePayment = (token) => {
     const body = {
@@ -60,7 +47,8 @@ class Cartview extends Component {
         if (!response && response.data.status !== "succeeded") {
           this.setState({
             visibleError: true,
-          });
+          })
+          window.location.href="/user/dashboard"
         }
       })
       .catch((err) => {
@@ -103,7 +91,7 @@ class Cartview extends Component {
           <div className="cart-precess">
             <strong>Total = {this.props.totalCart}</strong>
             <br />
-            {this.state.data.length !== 0 ? (
+            {this.props.data.length !== 0 ? (
               <StripeCheckout
                 stripeKey="pk_test_MY0CvrDbKKXZg0IH14zk0Gu100Wk4rnFmy"
                 token={this.makePayment}
@@ -210,8 +198,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCart: (data) => dispatch({ type: "FETCH_CART", payload: data }),
-    clearCart: () => dispatch({ type: "CLEAR_CART" }),
+    // fetchCart: (data) => dispatch({ type: "FETCH_CART", payload: data }),
+    clearCart: () => dispatch(clearCart()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cartview);

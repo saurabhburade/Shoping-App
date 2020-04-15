@@ -9,6 +9,7 @@ import {
   UPDATE_CART_QUANTITY,
   UPDATE_CART,
   SET_CART_TOTAL,
+  CLEAR_CART,
 } from "./userActionTypes";
 
 const axios = require("axios");
@@ -163,11 +164,15 @@ export const updateCart = (data) => {
     console.log("data", data);
     dispatch(fetchCartLoading(true));
     let updateCartArray = [...getState().user.userCart];
-    updateCartArray[data.index].quantity = data.quantity;
-    console.log(updateCartArray);
+    if (updateCartArray.length!==0) {
+      updateCartArray[data.index].quantity = data.quantity;
+         console.log(updateCartArray);
     dispatch(updateCartSuccess(updateCartArray));
     // 1. setState
     dispatch(setTotalCartPrice(getTotalCartPrice(getState().user.userCart)));
+    }
+    ;
+ 
     
     const arr = cartToSendCreator(getState().user.userCart);
     console.log(arr);
@@ -263,4 +268,10 @@ const getTotalCartPrice=(cart)=>{
        sum = sum + element.price * element.quantity;
      });
      return sum;
+}
+
+export const clearCart=()=>{
+  return{
+    type:CLEAR_CART
+  }
 }

@@ -1,6 +1,7 @@
 export const ADD_TO_CART = "ADD_TO_CART";
 export const UPDATE_CART= "UPDATE_CART";
 export const SET_CART_TOTAL = "SET_CART_TOTAL";
+export const CLEAR_CART = "CLEAR_CART";
 
 export const DELETE_CART = "DELETE_CART";
 export const FETCH_PROFILE_LOADING = "FETCH_PROFILE_LOADING";
