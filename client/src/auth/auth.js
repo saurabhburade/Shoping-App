@@ -16,18 +16,45 @@ exports.authLogin=async(data)=>{
         return user;
     }
 }
-exports.authSignup = data => {
+exports.authSignup =async data => {
     console.log("signup ",data);
+    
+    
+    
+    
+        if (data) {
+       
+    const user= await    axios.post(`${SERVER}/api/user/register`,
+            JSON.stringify(data)
+            
+        ,{
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+    
+        return user;
+    }
+    
+    
+};
+exports.updateProfile = async (data) => {
+  console.log("signup ", data);
+
   if (data) {
-    axios
-      .post(`${SERVER}/api/user/register`, data)
-      .then(payload => {
-        if (payload && window !== undefined) {
-          localStorage.setItem("jwt", payload.data.token);
-          localStorage.setItem("logged", true);
-        }
-      })
-      .catch(err => console.log(err));
+    const user = await axios.post(
+      `${SERVER}/api/user/update`,
+      JSON.stringify(data),
+
+      {
+        headers: {
+          "Content-type": "application/json",
+          "token":localStorage.getItem("jwt")
+        },
+      }
+    );
+
+    return user;
   }
 };
 exports.isAuthenticated=()=>{

@@ -2,9 +2,11 @@ const router = require("express").Router();
 const User = require("../models/user.model.js");
 const Products = require("../models/products.model.js");
 require("dotenv").config();
-const lodash = require('lodash');
+const lodash = require("lodash");
 const bcrypt = require("bcrypt");
 // const crypto=require('crypto');
+const stripe = require("stripe")("sk_test_4dtRajw2ujrNWT3pHjxG9CGx00fsLCesJI");
+
 const jwt = require("jsonwebtoken");
 const isAuth = require("../middlewares/isAuth");
 
@@ -12,111 +14,140 @@ const JWT_SECRET = process.env.JWT_SECRET;
 router.get("/fetch", (req, res) => {
   // console.log(req);
   // User.deleteMany({email:null})
-  const {token} =req.headers 
+  const { token } = req.headers;
+  console.log("tokenin fetcjh@@@@", token);
   if (token) {
-     User.find({ token })
-       .select("-_id")
-       .select("-password")
-       .select("-token")
-       .select("-createdAt")
-       .select("-updatedAt")
-       .select("-__v")
-       .then(user => {
-        const orders=user[0].orders.items
-        if (user.length!==0) {
-          
-    
-          
-          
-          
-          
-          
-          
-          
-          
-          let arr=[]
-          
-          
-                  orders.forEach(element => {
-                    // console.log("foreach", element);
-                    // element=JSON.stringify(element)
-                    if (element.productId) {
-                      const _id = element.productId;
-                      // console.log("productId: id", _id);
+    User.find({ token })
+      .select("-_id")
+      .select("-password")
+      .select("-token")
+      .select("-updatedAt")
+      .select("-__v")
+      .then((user) => {
+        console.log(user, user.length);
+        const orders = user[0].orders.items;
+        if (user.length !== 0) {
+          let arr = [];
 
-                      Products.findOne({ _id })
-                        .then(product => {
-                          console.log("products got ####", product);
+          if (orders.length !== 0) {
+            orders.forEach((element) => {
+              // console.log("foreach", element);
+              // element=JSON.stringify(element)
+              if (element.productId) {
+                const _id = element.productId;
+                // console.log("productId: id", _id);
 
-                          if (
-                            JSON.stringify(element.productId) ==
-                            JSON.stringify(product._id)
+                Products.findOne({ _id })
+                  .then((product) => {
+                    console.log("products got ####", product);
+
+                    if (
+                      JSON.stringify(element.productId) ==
+                      JSON.stringify(product._id)
+                    ) {
+                      const productToPush = {
+                        productId: product._id,
+                        title: product.title,
+                        description: product.description,
+                        price: product.price,
+                        quantity: element.quantity,
+                        img: product.productImagePath,
+                        chargeId: element.chargeId,
+                      };
+                      arr.push(productToPush);
+                      console.log("ordrt productToPush same", arr);
+                      let grpOrder = lodash.groupBy(arr, "chargeId");
+                      console.log("order", orders, grpOrder);
+                      if (orders.length == arr.length) {
+                        const keys = Object.keys(grpOrder);
+                        let addressDoc = {};
+                        keys.forEach((value) => {
+                          stripe.charges.retrieve(value, function (
+                            err,
+                            charge
                           ) {
-                            const productToPush = {
-                              productId: product._id,
-                              title: product.title,
-                              description: product.description,
-                              price: product.price,
-                              quantity: element.quantity,
-                              img: product.productImagePath,
-                              chargeId: element.chargeId
-                            };
-                            arr.push(productToPush);
-                            console.log("ordrt productToPush same", arr);
-                             let grpOrder = lodash.groupBy(arr, "chargeId");
-                             console.log("order", orders, grpOrder);
-                            if (orders.length == arr.length) {
-                              res
-                                .status(200)
-                                .json({
+                            // console.log(charge.billing_details.address, err);
+                            if (charge) {
+                              addressDoc[value] = {
+                                address: charge.billing_details.address,
+                                receipt_url: charge.receipt_url,
+                                date: new Date(
+                                  charge.created * 1000
+                                ).toDateString(),
+                              };
+                              
+                             
+                              console.log(
+                                "addressDoc",
+                                Object.keys(addressDoc).length,
+                                keys.length,
+                                addressDoc
+                              );
+                              console.log(
+                                orders.length == arr.length &&
+                                  keys.length === Object.keys(addressDoc).length
+                              );
+                              if (
+                                orders.length == arr.length &&
+                                keys.length === Object.keys(addressDoc).length
+                              ) {
+                                console.log(addressDoc);
+
+                                res.status(200).json({
                                   arr,
                                   message: "hello",
                                   user: user[0],
-                                  grpOrder
+                                  grpOrder,
+                                  addressDoc,
                                 });
+                              }
                             }
-                          } else {
-                            console.log("product not found", product);
-                          }
-                        })
-
-                        .catch(err => {
-                          console.log("error _id %%%%", err);
-                          res.status(400).json(err);
+                          });
                         });
+                      }
+                    } else {
+                      // res.status(404)
+                      console.log("product not found", product);
                     }
-                  });
-          
-          
-          
-          
-          
-          
-          
-          
-        }
-        
-         
-         
-        //  lodash.groupBy()
-       })
-       .catch(err => res.json(err)); 
-  }
+                  })
 
+                  .catch((err) => {
+                    console.log("error _id %%%%", err);
+                    res.status(400).json(err);
+                  });
+              }
+            });
+          } else {
+            res.status(200).json({
+              arr,
+
+              user: user[0],
+              grpOrder: {},
+            });
+          }
+        }
+
+        //  lodash.groupBy()
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json("err");
+      });
+  }
 });
 router.post("/register", (req, res) => {
   const { fname, lname, password, email } = req.body;
-console.log(req.body);
-    console.log(fname, lname, password, email);
+  console.log(req.body);
+  console.log(fname, lname, password, email);
   let newUser = new User({
     fname,
     lname,
     email,
     password,
-    token: ""
+    token: "",
   });
   User.find({ email })
-    .then(userdata => {
+    .then((userdata) => {
       if (userdata.length !== 0) {
         console.log(userdata);
         res.status(400).json(" User Already exist");
@@ -139,20 +170,22 @@ console.log(req.body);
             console.log("hashed ", newUser);
             newUser
               .save()
-              .then(user => {
-                const {email,token}=user
+              .then((user) => {
+                const { email, token } = user;
                 res.status(200).json({ email, token });
-                
-                console.log(user)})
-              .catch(err => {
+
+                console.log(user);
+              })
+              .catch((err) => {
                 console.log(err);
-                
-                res.status(400).json(err)});
+
+                res.status(400).json(err);
+              });
           });
         });
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.send(400, err);
     });
@@ -162,42 +195,71 @@ console.log(req.body);
 
 router.post("/login", (req, res) => {
   console.log(req.body);
-  const { email, pass,token } = req.body;
-  
+  const { email, pass, token } = req.body;
+
   User.find({ email })
-    .then(user => {
+    .then((user) => {
       if (user.length !== 0) {
-        bcrypt.compare(pass,user[0].password,(err,data)=>{
+        bcrypt.compare(pass, user[0].password, (err, data) => {
           if (!data) {
-          console.log("err");
-            
-            res.status(400).json({message:"Invalid Password"})
+            console.log("err");
+
+            res.status(400).json({ message: "Invalid Password" });
           }
           console.log(data);
           console.log(err);
-           if (data) {
-              const { email, token } = user[0];
-              const loginDetails = { email, token };
-              console.log("loginDetails", loginDetails);
-              console.log("user", user[0]);
-              res.cookie("jwt", loginDetails, new Date() - 9999);
-              res.status(200).json(loginDetails);
-           }
-           
-        })
-      
-      }
-      else{
-      res.status(404).json("User Not found");
-        
+          if (data) {
+            const { email, token } = user[0];
+            const loginDetails = { email, token };
+            console.log("loginDetails", loginDetails);
+            console.log("user", user[0]);
+            res.cookie("jwt", loginDetails, new Date() - 9999);
+            res.status(200).json(loginDetails);
+          }
+        });
+      } else {
+        res.status(404).json("User Not found");
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log("err", err);
 
       res.status(400).json("User Not found");
     });
   // res.send
+});
+router.post("/update", (req, res) => {
+  const { token } = req.headers;
+  const { fname, lname, email, pass } = req.body;
+  // const password=req.body.pass
+  let password;
+  bcrypt.hash(pass, 10, (err, hash) => {
+    if (err) {
+      console.log(err);
+    } else {
+      password = hash;
+    }
+  });
+  console.log(password);
+  User.findOneAndUpdate(
+    { token },
+    {
+      $set: {
+        fname,
+        lname,
+        email,
+        password,
+      },
+    },
+    (err, doc) => {
+      if (err) {
+        res.status(400).json(err);
+      } else {
+        res.status(200).json({ message: "success" });
+      }
+      console.log(err, doc);
+    }
+  );
 });
 
 module.exports = router;

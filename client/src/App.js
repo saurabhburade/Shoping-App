@@ -37,7 +37,7 @@ function App(props) {
           <Route path="/signup" exact component={Signup} />
           <Route path="/admin/addproduct" exact component={Addproduct} />
           <Route path="/user/dashboard" exact component={Profiledash} />
-        </Switch>
+        </Switch> 
       </div>
     </Router>
   );

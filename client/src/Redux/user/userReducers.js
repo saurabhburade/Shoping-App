@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   userCart: [],
   cartCount: 0,
   totalCartPrice: 0,
+  addressDoc:{}
 };
 
 const totalCartPrice=(cart)=>{
@@ -30,6 +31,7 @@ export default (state = INITIAL_STATE, action) => {
           ...state,
           userData: action.payload.user,
           orderGrp: action.payload.grpOrder,
+          addressDoc: action.payload.addressDoc,
         };
       case FETCH_PROFILE_FAIL:
         return {

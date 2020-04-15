@@ -84,6 +84,7 @@ class Cartview extends Component {
                   description={element.description}
                   index={index}
                   quantity={element.quantity}
+                  
                 />
               );
             })}

@@ -19,7 +19,7 @@ export const fetchProfile = (token) => {
   console.log("profile");
   return (dispatch) => {
     dispatch(fetchProfileLoading(true));
-
+console.log("inside");
     axios
       .get(`${SERVER}/api/user/fetch`, {
         headers: {
@@ -27,6 +27,8 @@ export const fetchProfile = (token) => {
         },
       })
       .then((result) => {
+console.log("then");
+        
         console.log(result);
         dispatch(fetchProfileSuccess(result.data));
         dispatch(fetchProfileLoading(false));

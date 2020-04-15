@@ -135,51 +135,6 @@ router.post("/checkout/stripe", (req, res) => {
                 addItem = [...addItem, item];
               });
               console.log("addItem0", addItem);
-              // User.findOneAndUpdate(
-              //   { token: authToken },
-              //   {
-              //     $set: {
-              //       orders: {
-              //         $push: {
-              //           items: { $each: addItem }
-              //         }
-              //       }
-              //     },
-              //     $set: {
-              //       cart: {
-              //         items: []
-              //       }
-              //     }
-              //   }
-              // )
-              //   .then(user => {
-              //     if (user) {
-              //       console.log(user);
-              //     }
-              //   })
-              //   .catch(err => console.log("err update", err));
-
-              // addItem.forEach((value)=>{
-              //   const query = {
-
-              //           orders: {
-              //             $push: {
-              //               items:value
-              //             }
-
-              //   }}
-              //   User.findOneAndUpdate({ token: authToken }, query, (err, doc) => {
-              //     if (err) {
-              //       console.log(err);
-              //     }
-              //     console.log(doc);
-              //   });
-              //   console.log(value);
-              // })
-
-              // {                 productId: '5e845e833f7c1244048786ce',
-              //     quantity: 1,
-              //     chargeId: 'ch_1GTpcpG4XqsgmqpGm0mB88IK'}
               User.findOne({ token: authToken }, (err, res) => {
                 if (err) {
                   console.log(err);
@@ -230,4 +185,5 @@ router.post("/checkout/stripe", (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
 module.exports = router;

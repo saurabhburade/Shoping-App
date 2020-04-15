@@ -4,7 +4,8 @@ import { Button } from 'antd';
 import {
   UnlockTwoTone,
   ShoppingCartOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  SmileTwoTone,
 } from "@ant-design/icons";
 import { Badge } from 'antd';
 import {Link} from "react-router-dom";
@@ -35,14 +36,11 @@ componentWillMount(){
           <div className="header">
             <Link to={"/"}>
               <div className="logo">
-                LOGO{" "}
-                <span role={"img"}>
-                  &#x1F505;
-                </span>
+                FRUITS SHOP
+                <span role={"img"}>&#x1F505;</span>
               </div>
             </Link>
-            <div className="search">
-            </div>
+            <div className="search"></div>
             <div className="menubtns">
               <Link to={"/products"}>
                 <div className="logo">Shop</div>
@@ -56,14 +54,13 @@ componentWillMount(){
                     title="Cart"
                     size="medium"
                     style={{
-                      border: "none"
+                      border: "none",
                     }}
-                    
                   >
                     <ShoppingCartOutlined
                       style={{
                         transform: "scale(1.8)",
-                        color: "#108ee9"
+                        color: "#108ee9",
                       }}
                     />
                   </Button>
@@ -72,7 +69,7 @@ componentWillMount(){
               {isAuthenticated() ? (
                 <Fragment>
                   <Link to={"/user/dashboard"}>
-                    <Button size="medium" icon={<UnlockTwoTone />}>
+                    <Button size="medium" icon={<SmileTwoTone />}>
                       PROFILE
                     </Button>
                   </Link>

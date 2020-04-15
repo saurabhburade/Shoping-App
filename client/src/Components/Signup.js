@@ -45,10 +45,10 @@ class Signup extends Component {
   openNotification = (
     placement,
     message = "Invalid Credentials",
-    description = "Please Enter Correct Email & Password"
+    description = "Please enter valid details or Your already registered"
   ) => {
     notification.info({
-      //   message: `Notification ${placement}`,
+      //   message: `Notification ${placement}`,  
       message: `${message}`,
       description: `${description}`,
       placement,
@@ -58,7 +58,7 @@ class Signup extends Component {
       style: {
         fontWeight: "bold",
         color: "orangered"
-      }
+      } 
     });
   };
   handleSubmit = event => {
@@ -82,11 +82,24 @@ class Signup extends Component {
         confPass: "",
         pass: ""
       });
-      authSignup(regData);
+      authSignup(regData)
+      .then((payload) => {
+        if (payload && window !== undefined) {
+          localStorage.setItem("jwt", payload.data.token);
+          localStorage.setItem("logged", true);
+          window.location.href = "/user/dashboard";
+        }
+      })
+      .catch((err) => {
+        if (
+          err &&
+          !isAuthenticated() &&
+          localStorage.getItem("logged") !== "true"
+        ) {
+          this.openNotification("topRight");
+        }
+      });
 
-      if (!isAuthenticated()) {
-        this.openNotification("topRight");
-      }
       if (isAuthenticated()) {
         this.openNotification("topRight","Registered Successfully","Now You can login");
       }

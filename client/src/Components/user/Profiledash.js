@@ -8,6 +8,7 @@ import Orderproductcard from "./Orderproductcard";
 import profile from "../images/boy.svg";
 import { connect } from "react-redux";
 import { fetchProfile } from "../../Redux/user/userActionCreators";
+import Updateprofile from "./Updateprofile";
 // const SERVER = process.env.REACT_APP_SERVER;
 class Profiledash extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Profiledash extends Component {
     this.state = {
       ordersVisible: false,
       profileVisible: true,
+      updateProfileVisible:false
     };
   }
 
@@ -23,12 +25,24 @@ class Profiledash extends Component {
     this.setState({
       ordersVisible: true,
       profileVisible: false,
+      updateProfileVisible:false
+      
     });
   };
   profileClick = () => {
     this.setState({
       ordersVisible: false,
       profileVisible: true,
+      updateProfileVisible:false
+      
+    });
+  };
+    updateClick = () => {
+    this.setState({
+      ordersVisible: false,
+      profileVisible: false,
+      updateProfileVisible:true
+      
     });
   };
   render() {
@@ -52,28 +66,33 @@ class Profiledash extends Component {
             <div className="user-name" onClick={this.profileClick}>
               Profile
             </div>
-            <div className="user-name" onClick={this.ordersClick}>
+            <div className="user-name" onClick={this.updateClick}>
+              Update Profile
+            </div> <div className="user-name" onClick={this.ordersClick}>
               Orders
             </div>
           </div>
         </div>
         <div className="user-details">
           {this.state.profileVisible ? (
-            <div className="profile-details">
-              <div className="profile-img-cont">
-                <img className="profile-img" src={profile} alt="profile" />
+             (
+              <div className="profile-details">
+                <div className="profile-img-cont">
+                  <img className="profile-img" src={profile} alt="profile" />
+                </div>
+                <p>
+                  Name :
+                  {this.props.data.fname
+                    ? this.props.data.fname + " " + this.props.data.lname
+                    : "Loading ..."}
+                </p>
+                <p>
+                  Email :
+                  {this.props.data.fname ? this.props.data.email : "Loading ..."}
+                </p>
               </div>
-              <p>
-                Name :
-                {this.props.data.fname
-                  ? this.props.data.fname + " " + this.props.data.lname
-                  : "Loading ..."}
-              </p>
-              <p>
-                Email :
-                {this.props.data.fname ? this.props.data.email : "Loading ..."}
-              </p>
-            </div>
+            )
+            
           ) : this.state.ordersVisible ? (
             <Fragment>
               {" "}
@@ -106,13 +125,17 @@ class Profiledash extends Component {
                     </div>
 
                     <div className="order-details">
-                      <p className="order-date">3rd April 2020</p>
+                      <p className="order-date">
+                        {this.props.addressDoc[value].date || "3rd April 2020"}
+                      </p>
                       <p className="Address">
-                        At Ad line 1 <br /> At Ad line 1 <br /> At Ad line 1{" "}
-                        <br /> At Ad line 1
+                        <p className="line-1">
+                          {this.props.addressDoc[value].address.line1 ||
+                            "Loading ..."}
+                        </p>
                       </p>
                       <a
-                        href={"#"}
+                        href={this.props.addressDoc[value].receipt_url || "#"}
                         //  href={`${this.state.paymentData.receipt_url}`}
                       >
                         <Button type="primary" key="buy">
@@ -124,7 +147,7 @@ class Profiledash extends Component {
                 );
               })}{" "}
             </Fragment>
-          ) : null}
+          ) :this.state.updateProfileVisible?<Updateprofile />:null}
         </div>
       </div>
     );
@@ -134,6 +157,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.user.userData,
     orderGrp: state.user.orderGrp,
+    addressDoc:state.user.addressDoc
   };
 };
 
