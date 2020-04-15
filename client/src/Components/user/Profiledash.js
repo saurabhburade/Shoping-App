@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { fetchDash } from "../../helpers/userdash.helper";
+// import { fetchDash } from "../../helpers/userdash.helper";
 import "./profiledash.css";
 import { isAuthenticated } from "../../auth/auth";
 import { Redirect } from "react-router-dom";

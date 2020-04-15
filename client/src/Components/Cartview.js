@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import { Modal, Button, Result } from "antd";
 import { Link } from "react-router-dom";
-import { fetchCart } from "../helpers/cart.helpers";
+// import { fetchCart } from "../helpers/cart.helpers";
 import { Spin } from "antd";
 import { updateCart, clearCart } from "../Redux/user/userActionCreators";
 const SERVER = process.env.REACT_APP_SERVER;

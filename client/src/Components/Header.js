@@ -10,7 +10,7 @@ import { Badge } from 'antd';
 import {Link} from "react-router-dom";
 import "./css/Header.css"
 import { isAuthenticated } from '../auth/auth';
-import { fetchProducts } from "../helpers/products.helpers";
+// import { fetchProducts } from "../helpers/products.helpers";
 class Header extends Component {
     constructor(props) {
         super(props)
@@ -58,9 +58,7 @@ componentWillMount(){
                     style={{
                       border: "none"
                     }}
-                    onClick={() => {
-                      fetchProducts();
-                    }}
+                    
                   >
                     <ShoppingCartOutlined
                       style={{
