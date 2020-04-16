@@ -27,18 +27,34 @@
 width: 150px;
 }
 .prod-title{
+   /* display: inline-block;
+    white-space: nowrap; */
     font-weight: 700;
+
 }
 .prod-price{
-    width:fit-content;
+  width: 100%;
+    display: inline-block;
+    white-space: nowrap;
     font-weight: 600;
     background: #e7e2e2;
     padding: 5%;
+    margin: 0% 2%;
     border-radius: 20%;
 }
 .prod-price-title{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+     display: inline-block;
+    white-space: nowrap;
+  width: 100%;
+
     
+}
+.prod-card-btns{
+  width: 10em;
+
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }

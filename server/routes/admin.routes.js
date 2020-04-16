@@ -11,10 +11,9 @@ const isAuth = require("../middlewares/isAuth");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 router.get("/fetch", (req, res) => {
-  // console.log(req);
-  // User.deleteMany({email:null})
-  const { token, admin_token } = req.headers;
-  if (token && admin_token) {
+
+  const { token, admin_token,isadmin } = req.headers;
+  if (token && admin_token && isadmin==='true') {
     User.find({ token })
       .select("-_id")
       .select("-password")
@@ -23,10 +22,15 @@ router.get("/fetch", (req, res) => {
       .select("-__v")
       .then((user) => {
         console.log(user, user.length);
+        if (user) {
+          res.status(200).json(user)
+        } 
       })
       .catch((err) => {
         console.log(err);
-        // res.json("err");
+        res.status(
+          404
+        ).json({error:"Not Found"});
       });
   }
 });

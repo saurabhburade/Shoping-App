@@ -75,5 +75,49 @@ newProduct.save().then(newProduct=>{
   
 })
   // res.json(req.files);
+  
+});
+router.post("/delete",(req,res)=>{
+  console.log(req.headers);
+  console.log(req.body);
+  const {productId}=req.body
+  const { token, admin_token, isadmin } = req.headers;
+   if (token && admin_token && isadmin==='true') {
+     
+    Products.findOneAndDelete({ _id:productId }, (err, doc) => {
+      console.log("err", err, "doc", doc);
+      if (doc) {
+        res.status(200).json({ message: "success" });
+      } else {
+        res.status(400).json({ error: "Fail" });
+      }
+    });
+    
+   }
+})
+
+router.post("/update", (req, res) => {
+  console.log(req.headers);
+  console.log(req.body);
+  const {title , description,price}=req.body
+  const { productId } = req.body;
+  const { token, admin_token, isadmin } = req.headers;
+  if (token && admin_token && isadmin === "true") {
+    Products.findOneAndUpdate({ _id: productId },{$set:{
+      title , description,price
+      
+    }},
+      
+      
+      
+       (err, doc) => {
+      console.log("err", err, "doc", doc);
+      if (doc) {
+        res.status(200).json({ message: "success" });
+      } else {
+        res.status(400).json({ error: "Fail" });
+      }
+    });
+  }
 });
 module.exports = router;

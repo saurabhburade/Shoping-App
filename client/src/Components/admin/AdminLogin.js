@@ -61,7 +61,7 @@ class AdminLogin extends Component {
             localStorage.setItem("logged", true);
             localStorage.setItem("admin", true);
             localStorage.setItem("admin_token", payload.data.admin_token);
-            window.location.href = "admin/dashboard";
+            window.location.href = "/";
           }
         })
         .catch((err) => {

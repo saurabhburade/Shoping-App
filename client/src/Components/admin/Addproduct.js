@@ -80,7 +80,7 @@ formData.set("productData", JSON.stringify(productData));
   render() {
     return (
       <Fragment>
-        <div className="login-form-container">
+        <div className="add-product-form-container">
           <Form
 
             className="login-form"
