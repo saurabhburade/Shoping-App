@@ -11,6 +11,7 @@ import { Badge } from 'antd';
 import {Link} from "react-router-dom";
 import "./css/Header.css"
 import { isAuthenticated } from '../auth/auth';
+import { isAuthorised } from "./admin/auth";
 // import { fetchProducts } from "../helpers/products.helpers";
 class Header extends Component {
     constructor(props) {
@@ -66,9 +67,27 @@ componentWillMount(){
                   </Button>
                 </Link>
               </Badge>
-              {isAuthenticated() ? (
+              {isAuthenticated() && !isAuthorised() ? (
                 <Fragment>
                   <Link to={"/user/dashboard"}>
+                    <Button size="medium" icon={<SmileTwoTone />}>
+                      PROFILE
+                    </Button>
+                  </Link>
+
+                  <Link to={"/login"}>
+                    <Button
+                      size="medium"
+                      onClick={logout}
+                      icon={<LogoutOutlined />}
+                    >
+                      Logout
+                    </Button>
+                  </Link>
+                </Fragment>
+              ) : isAuthorised() ? (
+                <Fragment>
+                  <Link to={"/admin/dashboard"}>
                     <Button size="medium" icon={<SmileTwoTone />}>
                       PROFILE
                     </Button>

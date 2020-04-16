@@ -6,13 +6,14 @@ const helmet = require("helmet")
 const morgan=require("morgan")
 const userRoutes=require('./routes/user.routes.js')
 const productsRoutes = require("./routes/products.routes.js");
+const adminRoutes=require('./routes/admin.routes');
 const mongoose=require('mongoose');
 const cors=require('cors')
 const isAuth =require('./middlewares/isAuth');
 const bodyParser=require('body-parser');
 const conn = mongoose.connect("mongodb://localhost/ShoppingApp", {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true, 
   useCreateIndex: true,
   useFindAndModify: false
 });
@@ -36,6 +37,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use("/api/user", userRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/products", productsRoutes);
+app.use("/api/admin", adminRoutes);
+
 
 app.get("/", (req, res) => {
     res.send("hitting / route")

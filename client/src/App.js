@@ -14,6 +14,9 @@ import Addproduct from "./Components/admin/Addproduct";
 import Profiledash from "./Components/user/Profiledash";
 import { isAuthenticated } from "./auth/auth";
 import { fetchProfile, fetchCart } from "./Redux/user/userActionCreators";
+import Adminpanel from "./Components/admin/Adminpanel";
+import AdminLogin from "./Components/admin/AdminLogin";
+import Adminsignup from "./Components/admin/Adminsignup";
 
 require('dotenv').config()
 function App(props) {
@@ -37,7 +40,10 @@ function App(props) {
           <Route path="/signup" exact component={Signup} />
           <Route path="/admin/addproduct" exact component={Addproduct} />
           <Route path="/user/dashboard" exact component={Profiledash} />
-        </Switch> 
+          <Route path="/admin/dashboard" exact component={Adminpanel} />
+          <Route path="/admin/login" exact component={AdminLogin} />
+          <Route path="/admin/signup" exact component={Adminsignup} />
+        </Switch>
       </div>
     </Router>
   );

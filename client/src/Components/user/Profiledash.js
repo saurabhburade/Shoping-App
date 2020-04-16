@@ -130,6 +130,7 @@ class Profiledash extends Component {
                       </p>
                       <p className="Address">
                         <p className="line-1">
+                          Address :{" "}
                           {this.props.addressDoc[value].address.line1 ||
                             "Loading ..."}
                         </p>
