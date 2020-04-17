@@ -11,6 +11,7 @@ const mongoose=require('mongoose');
 const cors=require('cors')
 const isAuth =require('./middlewares/isAuth');
 const bodyParser=require('body-parser');
+const path=require('path');
 const conn = mongoose.connect("mongodb://localhost/ShoppingApp", {
   useNewUrlParser: true,
   useUnifiedTopology: true, 
@@ -40,15 +41,21 @@ app.use("/api/products", productsRoutes);
 app.use("/api/admin", adminRoutes);
 
 
-app.get("/", (req, res) => {
-    res.send("hitting / route")
-})
+// app.get("/", (req, res) => {
+//     res.send("hitting / route")
+// })
 app.post("/login", (req, res) => {
     console.log(req.body);
     
     res.send("hitting /login route")
 })
 app.use("/products/public/uploads/", express.static("public/uploads"));
+if (process.env.NODE_ENV !== "production") {
+  app.use(express.static(path.join(__dirname, "../client", "build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+  });
+}
 
 app.listen(8000,()=>{
     console.log("Server is 🔥 ")

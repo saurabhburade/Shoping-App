@@ -72,7 +72,7 @@ class Cartview extends Component {
       return <Redirect to="/login" />;
     }
     return (
-      <Spin spinning={this.props.loading} size="default">
+    
         <div className="cart-view-container">
           <div className="cart-card-container">
             {this.props.data.map((element, index) => {
@@ -186,7 +186,7 @@ class Cartview extends Component {
             {/* </ReactStripeCheckout> */}
           </div>
         </div>
-      </Spin>
+     
     );
   }
 }

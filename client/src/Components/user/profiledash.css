@@ -193,3 +193,105 @@ width: 100%;
     justify-content: center;
     align-items: center;
 }
+@media(max-width:700px){
+.user-dash-container{
+    width: 100%;
+    /* min-height: 90vh; */
+    /* background: rgb(6, 6, 39); */
+    /* display: flex;
+    justify-content:center; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* align-items: flex-start;
+    padding: 2% 5%; */
+}
+.user-details{
+    /* background: whitesmoke; 
+    
+    flex-grow: 2;
+    padding: 5%;
+    height:100%;
+    border-radius: 2px;
+       color: gray;
+    font-weight: bold;
+    font-size: 1.3em;
+    text-align: center; */
+
+    width: 100%;
+    display: flex;
+     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.menu-user-dash{
+       width:100%;
+       padding: 0%;
+       margin: 0%;
+    /* display: flex; */
+    flex-direction:row;
+     justify-content: space-between;
+    
+        /* background: whitesmoke;  */
+   
+}
+.menu-user-dash>div{
+    /* background: rgb(238, 238, 234); */
+       width: 100%;
+    
+      padding:1% 5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    margin: 0% 1%;
+    border-radius: 4px;
+    /* color: black; */
+    font-size: 1em;
+      
+}
+.user-profile-card{
+    /* text-align: center; */
+    width: 100%;
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
+    /* padding: 1%; */
+    /* border-radius: 2px; */
+}
+.order-card-container{
+    /* background: orange;   */
+    /* padding: 3%; */
+    overflow: visible;
+    width: 100%;
+    padding: 1%;
+    transform: scale(1);
+    display: flex;
+    flex-direction: column;
+}
+.products-order-container{
+    /* border: 2px solid saddlebrown; */
+width: 100%;
+
+    /* background: rgb(255, 255, 255); */
+}
+.order-details{
+    width:100%;
+    height: 100%;
+}
+.Address{
+    overflow-wrap: break-word;
+    width:auto;
+    height: 100%;
+    text-overflow: ellipsis;
+    /* overflow: hidden; */
+    font-size: 1em;
+    padding: 4%;
+    /* word-wrap: normal; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.order-card-footer{
+    font-size: 0.8em;
+}
+}

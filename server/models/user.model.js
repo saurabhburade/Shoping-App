@@ -7,25 +7,25 @@ const UserSchema = new Schema(
   {
     fname: {
       type: String,
-      required: true
+      required: true,
     },
     lname: {
       type: String,
-      required: true
+      required: true,
     },
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
-      required: true
+      required: true,
     },
     token: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     cart: {
       items: [
@@ -33,14 +33,26 @@ const UserSchema = new Schema(
           productId: {
             type: ObjectId,
             ref: "Products",
-            required: true
+            required: true,
           },
           quantity: {
             type: Number,
-            required: true
-          }
-        }
-      ]
+            required: true,
+          },
+          img: {
+            type: String,
+            required: true,
+          },
+          price: {
+            type: Number,
+            required: true,
+          },
+          title: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
     },
     orders: {
       items: [
@@ -48,22 +60,34 @@ const UserSchema = new Schema(
           productId: {
             type: ObjectId,
             ref: "Products",
-            required: true
+            required: true,
           },
           quantity: {
             type: Number,
-            required: true
+            required: true,
           },
           chargeId: {
             type: String,
-            required: true
-          }
-        }
-      ]
-    }
+            required: true,
+          },
+          img: {
+            type: String,
+            required: true,
+          },
+          price: {
+            type: Number,
+            required: true,
+          },
+          title: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

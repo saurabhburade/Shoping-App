@@ -25,3 +25,24 @@
   /* background: gainsboro; */
   
 }
+@media(max-width:700px){
+  
+  .login-form {
+  width:100%;
+padding: 2% 5%;
+  padding-top: 7%;
+  /* background: gainsboro; */
+  
+}
+.login-form-container {
+  background: transparent;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+
+}
+
+}

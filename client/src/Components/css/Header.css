@@ -5,6 +5,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 99;
+  
 }
 .logo{
     width: 100%;
@@ -16,4 +18,25 @@
     width: 60%;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+}
+@media(max-width:700px){
+  .header {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2% 1%;
+  
+}
+.menubtns{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  padding: 3% 0%;
+    
+}
 }

@@ -8,7 +8,7 @@ export const fetchShoppingItems=()=>{
 
      
      dispatch(fetchShoppingItemsLoading(true))
-     axios.get(`${SERVER}/api/products/fetch`)
+     axios.get(`/api/products/fetch`)
      .then(result=>{
          console.log(result);
         dispatch(fetchShoppingItemsSuccess(result.data));

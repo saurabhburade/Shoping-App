@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { Form, Input, Button, notification } from "antd";
 import axios from "axios"
-import { addProduct } from "./helper";
+// import { addAdminProducts } from "./helper";
 import { isAuthorised } from "./auth";
+import { addAdminProducts } from "./helper";
+// import { addAdminProducts } from "./helper";
 const SERVER = process.env.REACT_APP_SERVER;
 
 class Addproduct extends Component {
@@ -57,7 +59,7 @@ if (
   this.state.price !== 0 &&
   this.state.productImg
 ) {
-  addProduct(formData)
+  addAdminProducts(formData)
     .then((payload) => {
       if (payload && window !== undefined) {
         if (isAuthorised()) {

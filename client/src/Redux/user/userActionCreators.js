@@ -21,7 +21,7 @@ export const fetchProfile = (token) => {
     dispatch(fetchProfileLoading(true));
 console.log("inside");
     axios
-      .get(`${SERVER}/api/user/fetch`, {
+      .get(`/api/user/fetch`, {
         headers: {
           token: token,
         },
@@ -62,7 +62,7 @@ export const fetchCart = (token) => {
   return (dispatch, getState) => {
     dispatch(fetchCartLoading(true));
     axios
-      .get(`${SERVER}/api/cart/fetch`, {
+      .get(`/api/cart/fetch`, {
         headers: {
           token: token,
         },
@@ -118,7 +118,7 @@ export const addToCart = (data) => {
     console.log(arr);
     axios
       .post(
-        `${SERVER}/api/cart/add`,
+        `/api/cart/add`,
         {
           addItem: arr,
         },
@@ -143,15 +143,15 @@ export const addToCart = (data) => {
 };
 
 const cartToSendCreator = (products) => {
+  console.log(products);
   let arr = [];
   products.forEach((value) => {
-    const { productId, quantity } = value;
-    if (productId && quantity !== 0) {
-      const arrItem = { productId, quantity };
-      arr = [...arr, arrItem];
+  
+    if (value.productId && value.quantity !== 0) {
+      arr = [...arr, value];
     }
   });
-
+console.log(arr);
   return arr;
 };
 
@@ -180,7 +180,7 @@ export const updateCart = (data) => {
     console.log(arr);
     axios
       .post(
-        `${SERVER}/api/cart/add`,
+        `/api/cart/add`,
         {
           addItem: arr,
         },
@@ -229,7 +229,7 @@ export const deleteCart = (data) => {
     console.log(arr);
     axios
       .post(
-        `${SERVER}/api/cart/add`,
+        `/api/cart/add`,
         {
           addItem: arr,
         },

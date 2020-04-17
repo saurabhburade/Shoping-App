@@ -1,7 +1,7 @@
 const axios = require("axios");
 const SERVER = process.env.REACT_APP_SERVER;
 
-exports.authAdminLogin = async (data) => {
+export const authAdminLogin = async (data) => {
   if (data) {
     const user = await axios.post(
       `${SERVER}/api/admin/login`,
@@ -17,7 +17,7 @@ exports.authAdminLogin = async (data) => {
     return user;
   }
 };
-exports.authAdminSignup = async (data) => {
+export const authAdminSignup = async (data) => {
   console.log("signup ", data);
   if (data) {
     const user = await axios.post(
@@ -36,7 +36,7 @@ exports.authAdminSignup = async (data) => {
     return user;
   }
 };
-exports.updateAdminProfile = async (data) => {
+export const updateAdminProfile = async (data) => {
   console.log("signup ", data);
 
   if (data) {
@@ -58,7 +58,7 @@ exports.updateAdminProfile = async (data) => {
   }
 };
 
-exports.isAuthorised = () => {
+export const isAuthorised = () => {
   if (
     localStorage.getItem("jwt") &&
     localStorage.getItem("logged") === "true" &&

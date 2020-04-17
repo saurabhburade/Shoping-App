@@ -34,24 +34,17 @@ router.get("/fetch", (req, res) => {
               // console.log("foreach", element);
               // element=JSON.stringify(element)
               if (element.productId) {
-                const _id = element.productId;
-                // console.log("productId: id", _id);
-
-                Products.findOne({ _id })
-                  .then((product) => {
-                    console.log("products got ####", product);
 
                     if (
-                      JSON.stringify(element.productId) ==
-                      JSON.stringify(product._id)
+                      JSON.stringify(element.productId)
+                       
                     ) {
                       const productToPush = {
-                        productId: product._id,
-                        title: product.title,
-                        description: product.description,
-                        price: product.price,
+                        productId: element._id,
+                        title: element.title,
+                        price: element.price,
                         quantity: element.quantity,
-                        img: product.productImagePath,
+                        img: element.img,
                         chargeId: element.chargeId,
                       };
                       arr.push(productToPush);
@@ -75,18 +68,14 @@ router.get("/fetch", (req, res) => {
                                   charge.created * 1000
                                 ).toDateString(),
                               };
-                              
-                             
+
                               console.log(
                                 "addressDoc",
                                 Object.keys(addressDoc).length,
                                 keys.length,
                                 addressDoc
                               );
-                              console.log(
-                                orders.length == arr.length &&
-                                  keys.length === Object.keys(addressDoc).length
-                              );
+                     
                               if (
                                 orders.length == arr.length &&
                                 keys.length === Object.keys(addressDoc).length
@@ -105,24 +94,19 @@ router.get("/fetch", (req, res) => {
                           });
                         });
                       }
-                    } else {
-                      // res.status(404)
-                      console.log("product not found", product);
-                    }
-                  })
+                      
 
-                  .catch((err) => {
-                    console.log("error _id %%%%", err);
-                    res.status(400).json(err);
-                  });
-              }
-            });
+                  // .catch((err) => {
+                  //   console.log("error _id %", err);
+                  //   // res.status(400).json(err);
+                  // });
+              }}
+            })
           } else {
             res.status(200).json({
               arr,
-
               user: user[0],
-              grpOrder: {},
+              
             });
           }
         }

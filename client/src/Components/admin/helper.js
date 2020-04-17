@@ -1,7 +1,7 @@
 const axios = require("axios");
 const SERVER = process.env.REACT_APP_SERVER;
 
-exports.deleteProduct = async (data) => {
+export const deleteProduct = async (data) => {
   if (data) {
     const user = await axios.post(
       `${SERVER}/api/products/delete`,
@@ -21,7 +21,7 @@ exports.deleteProduct = async (data) => {
 }
 
 
-exports.updateProduct = async (data) => {
+export const updateProduct = async (data) => {
   if (data) {
     const user = await axios.post(
       `${SERVER}/api/products/update`,
@@ -37,9 +37,10 @@ exports.updateProduct = async (data) => {
     );
 
     return user;
+  
   }
 };
-exports.addProduct = async (formData) => {
+export const addAdminProducts = async (formData) => {
   if (formData) {
     const user = await axios.post(
       `${SERVER}/api/products/upload`,

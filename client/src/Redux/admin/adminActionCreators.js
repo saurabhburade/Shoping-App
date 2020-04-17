@@ -9,7 +9,7 @@ export const fetchAdminProfile = (token) => {
     dispatch(fetchProfileLoading(true));
     console.log("inside");
     axios
-      .get(`${SERVER}/api/admin/fetch`, {
+      .get(`/api/admin/fetch`, {
         headers: {
           "Content-type": "application/json",
           token: localStorage.getItem("jwt"),
