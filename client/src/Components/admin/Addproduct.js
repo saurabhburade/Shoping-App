@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, notification } from "antd";
 import axios from "axios"
+import { addProduct } from "./helper";
+import { isAuthorised } from "./auth";
 const SERVER = process.env.REACT_APP_SERVER;
 
 class Addproduct extends Component {
@@ -11,82 +13,95 @@ class Addproduct extends Component {
       title: "",
       description: "",
       price: 0,
-      productImg:{}
+      productImg: {},
     };
   }
-  handleTitleChange = event => {
+  handleTitleChange = (event) => {
     this.setState({
-      title: event.target.value
+      title: event.target.value,
     });
   };
-  handleDescriptionChange = event => {
+  handleDescriptionChange = (event) => {
     this.setState({
-      description: event.target.value
+      description: event.target.value,
     });
   };
-  handlePriceChange = event => {
+  handlePriceChange = (event) => {
     this.setState({
-      price: event.target.value
+      price: event.target.value,
     });
   };
-  handleImageChange=event=>{
-      console.log(event.target.files[0]);
-      this.setState({
-        productImg: event.target.files[0]
-      });
-  }
-  submitAddProduct = event => {
+  handleImageChange = (event) => {
+    console.log(event.target.files[0]);
+    this.setState({
+      productImg: event.target.files[0],
+    });
+  };
+  submitAddProduct = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    
-    formData.append("productImage",
-      this.state.productImg)
-    console.log(formData.getAll("productImage"));
 
-    
+    formData.append("productImage", this.state.productImg);
+    console.log(formData.getAll("productImage"));
+console.log(this.state.productImg);
     const productData = {
       title: this.state.title,
       description: this.state.description,
-      price: this.state.price
-    
+      price: this.state.price,
     };
-formData.set("productData", JSON.stringify(productData));
-    
+    formData.set("productData", JSON.stringify(productData));
 
-    axios.post(
-      `${SERVER}/api/products/upload`,
-      
-     formData
-      ,
-      {
-        headers: {
-          accept: "multipart/form-data",
-          "content-type": "multipart/form-data",
-          message: "Hello"
+if (
+  this.state.title.trim() !== "" &&
+  this.state.description.trim() !== "" &&
+  this.state.price !== 0 &&
+  this.state.productImg
+) {
+  addProduct(formData)
+    .then((payload) => {
+      if (payload && window !== undefined) {
+        if (isAuthorised()) {
+          this.openNotification("topRight", "Added Successfully", "");
         }
+        window.location.reload();
       }
-    )
-    .then(data=>{
-      console.log(data);
     })
-    
-
-
+    .catch((err) => {
+      if (err && !isAuthorised()) {
+        this.openNotification("topRight");
+      }
+    });
+}
+else{
+          this.openNotification("topRight"  );
   
+}
+  };
 
-    
-    
+  openNotification = (
+    placement,
+    message = "Invalid Credentials",
+    description = "Please enter valid details or  Product Already Available"
+  ) => {
+    notification.info({
+      //   message: `Notification ${placement}`,
+      message: `${message}`,
+      description: `${description}`,
+      placement,
+      style: {
+        fontWeight: "bold",
+        color: "orangered",
+      },
+    });
   };
   render() {
     return (
       <Fragment>
         <div className="add-product-form-container">
           <Form
-
             className="login-form"
             name="basic"
             initialValues={{ remember: true }}
-            
           >
             <Form.Item
               name="title"
@@ -96,7 +111,7 @@ formData.set("productData", JSON.stringify(productData));
                 onChange={this.handleTitleChange}
                 placeholder="Title of Product "
                 style={{
-                  width: 300
+                  width: 300,
                 }}
               />
             </Form.Item>
@@ -108,7 +123,7 @@ formData.set("productData", JSON.stringify(productData));
                 onChange={this.handleDescriptionChange}
                 placeholder="Description of Product  "
                 style={{
-                  width: 300
+                  width: 300,
                 }}
               />
             </Form.Item>
@@ -121,7 +136,7 @@ formData.set("productData", JSON.stringify(productData));
                 type="Number"
                 placeholder="Price of Product"
                 style={{
-                  width: 300
+                  width: 300,
                 }}
               />
             </Form.Item>
@@ -135,7 +150,7 @@ formData.set("productData", JSON.stringify(productData));
                 onChange={this.handleImageChange}
                 placeholder="Product Image"
                 style={{
-                  width: 300
+                  width: 300,
                 }}
               />
             </Form.Item>

@@ -39,3 +39,37 @@ exports.updateProduct = async (data) => {
     return user;
   }
 };
+exports.addProduct = async (formData) => {
+  if (formData) {
+    const user = await axios.post(
+      `${SERVER}/api/products/upload`,
+
+      formData,
+      {
+        headers: {
+          accept: "multipart/form-data",
+          "content-type": "multipart/form-data",
+          message: "Hello",
+          isAdmin: true,
+          admin_token: localStorage.getItem("admin_token"),
+          token: localStorage.getItem("jwt"),
+        },
+      }
+    );
+
+    // await axios.post(
+    //   `${SERVER}/api/products/update`,
+    //   JSON.stringify(data),
+    //   {
+    //     headers: {
+    //       "Content-type": "application/json",
+    //       isAdmin: true,
+    //       admin_token: localStorage.getItem("admin_token"),
+    //       token: localStorage.getItem("jwt"),
+    //     },
+    //   }
+    // );
+
+    return user;
+  }
+};

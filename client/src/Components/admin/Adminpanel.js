@@ -6,6 +6,7 @@ import profile from "../images/boy.svg";
 import Addproduct from "./Addproduct";
 import AllProducts from "./AllProducts";
 import EditProfile from "./EditProfile";
+import { connect } from "react-redux";
 class Adminpanel extends Component {
   constructor(props) {
     super(props);
@@ -46,7 +47,13 @@ class Adminpanel extends Component {
         <div className="admin-menu-profile">
           <div className="admin-profile-card">
             <img src={profile} alt="admin" />
-            <strong> User Name</strong>
+            <strong>
+              {this.props.adminDetail.fname
+                ? this.props.adminDetail.fname +
+                  " " +
+                  this.props.adminDetail.lname
+                : "Loading .. .."}
+            </strong>
           </div>
           <div className="admin-menu">
             <div className="admin-menu-item" onClick={this.EditProfileClick}>
@@ -76,4 +83,16 @@ class Adminpanel extends Component {
   }
 }
 
-export default Adminpanel;
+const mapStateToProps = (state) => {
+  return {
+    adminDetail: state.admin.adminDetail,
+  };
+};
+
+
+
+
+
+export default 
+connect(mapStateToProps,null)(Adminpanel)
+;

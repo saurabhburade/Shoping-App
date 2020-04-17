@@ -14,23 +14,22 @@ router.get("/fetch", (req, res) => {
 
   const { token, admin_token,isadmin } = req.headers;
   if (token && admin_token && isadmin==='true') {
-    User.find({ token })
+    Admin.findOne({ token })
       .select("-_id")
       .select("-password")
       .select("-token")
       .select("-updatedAt")
       .select("-__v")
+      .select("-admin_token")
       .then((user) => {
         console.log(user, user.length);
         if (user) {
-          res.status(200).json(user)
-        } 
+          res.status(200).json(user);
+        }
       })
       .catch((err) => {
         console.log(err);
-        res.status(
-          404
-        ).json({error:"Not Found"});
+        res.status(404).json({ error: "Not Found" });
       });
   }
 });
@@ -150,37 +149,45 @@ if (req.headers.isadmin === "true" && author.toUpperCase()==="SAURABH") {
   // res.send
 });
 router.post("/update", (req, res) => {
-  const { token } = req.headers;
+  const { token ,admin_token,isadmin} = req.headers;
   const { fname, lname, email, pass } = req.body;
+  console.log(req.body);
   // const password=req.body.pass
-  let password;
+if (token && admin_token && isadmin === "true") {
+  let password="";
   bcrypt.hash(pass, 10, (err, hash) => {
     if (err) {
       console.log(err);
     } else {
       password = hash;
+        Admin.findOneAndUpdate(
+          { token },
+          {
+            $set: {
+              fname,
+              lname,
+              email,
+              password,
+            },
+          },
+          (err, doc) => {
+            if (err) {
+              res.status(400).json(err);
+            } else {
+              res.status(200).json({ message: "success" });
+            }
+            console.log(err, doc);
+          }
+        );
     }
   });
   console.log(password);
-  User.findOneAndUpdate(
-    { token },
-    {
-      $set: {
-        fname,
-        lname,
-        email,
-        password,
-      },
-    },
-    (err, doc) => {
-      if (err) {
-        res.status(400).json(err);
-      } else {
-        res.status(200).json({ message: "success" });
-      }
-      console.log(err, doc);
-    }
-  );
+
+}
+else{
+  console.log("object");
+  res.status(400).json({error:"Invalid Credentials"})
+}
 });
 
 module.exports = router;

@@ -17,12 +17,18 @@ import { fetchProfile, fetchCart } from "./Redux/user/userActionCreators";
 import Adminpanel from "./Components/admin/Adminpanel";
 import AdminLogin from "./Components/admin/AdminLogin";
 import Adminsignup from "./Components/admin/Adminsignup";
+import { isAuthorised } from "./Components/admin/auth";
+import { fetchAdminProfile } from "./Redux/admin/adminActionCreators";
+import Home from "./Components/Home";
 
 require('dotenv').config()
 function App(props) {
-  if (isAuthenticated()) {
+  if (isAuthenticated() && !isAuthorised()) {
     props.fetchProfile();
     props.fetchCart();
+  }
+  if (isAuthorised()) {
+    props.fetchAdminProfile()
   }
   return (
     <Router>
@@ -43,6 +49,7 @@ function App(props) {
           <Route path="/admin/dashboard" exact component={Adminpanel} />
           <Route path="/admin/login" exact component={AdminLogin} />
           <Route path="/admin/signup" exact component={Adminsignup} />
+          <Route path="/" exact component={Home} />
         </Switch>
       </div>
     </Router>
@@ -53,6 +60,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchProfile: () => dispatch(fetchProfile(localStorage.getItem("jwt"))),
     fetchCart: () => dispatch(fetchCart(localStorage.getItem("jwt"))),
+    fetchAdminProfile: () => dispatch(fetchAdminProfile()),
   };
 };
 export default connect(null, mapDispatchToProps)(App);

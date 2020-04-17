@@ -34,12 +34,7 @@ class Products extends Component {
             />
           );
         })}
-        <Productcard
-          title="Apple"
-          price={10}
-          description="lorem ipsum fsjfnskj"
-          img={apple}
-        ></Productcard>
+
       </Fragment>
     );
   }

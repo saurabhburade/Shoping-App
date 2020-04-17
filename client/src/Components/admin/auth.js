@@ -48,9 +48,8 @@ exports.updateAdminProfile = async (data) => {
         headers: {
           "Content-type": "application/json",
           token: localStorage.getItem("jwt"),
-          admin:true,
-          admin_token:data.token
-          
+          isadmin: 'true',
+          admin_token: localStorage.getItem("admin_token"),
         },
       }
     );

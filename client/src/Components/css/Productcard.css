@@ -1,5 +1,7 @@
 .prod-card{
-    width: 15%;
+  position: relative;
+  overflow: hidden;
+    width: 17em;
     height: 320px;
    border: 1px solid #b4afaf;
    border-radius: 5px;
@@ -10,6 +12,9 @@
    flex-direction: column;
    justify-content: space-between;
    align-items: center;
+   /* background-image: url("../images/Background.svg") ;
+   background-repeat: no-repeat;
+   background-size: cover; */
 }
 .prod-img-container{
     width: 100%;
@@ -58,3 +63,16 @@ width: 150px;
   align-items: center;
   flex-direction: row;
 }
+
+/* .bg-mark{
+  position: absolute;
+  top: 0;
+  z-index: -999;
+
+} */
+/* #bg{
+    font-size: 20em;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+} */

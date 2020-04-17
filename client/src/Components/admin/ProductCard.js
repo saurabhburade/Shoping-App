@@ -143,6 +143,12 @@ class ProductCard extends Component {
 
     return (
       <div className="prod-card">
+          
+          {/* <div className="bg-mark">
+              <p id="bg">
+                  F
+              </p>
+          </div> */}
         <div className="prod-img-container">
           <img className="prod-img" src={API + this.props.img} alt="tshirt" />
         </div>
