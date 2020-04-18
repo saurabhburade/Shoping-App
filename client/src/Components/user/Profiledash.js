@@ -95,8 +95,8 @@ class Profiledash extends Component {
             
           ) : this.state.ordersVisible ? (
             <Fragment>
-              {" "}
-              {Object.keys(this.props.orderGrp).map((value) => {
+             
+                {Object.keys(this.props.orderGrp).length!==0&&Object.keys(this.props.orderGrp).map((value) => {
                 return (
                   <div className="order-card-container">
                     <div className="products-order-container">

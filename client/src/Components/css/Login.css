@@ -11,7 +11,9 @@
 }
 
 .login-form {
-  width:40%;
+  width: 
+  50em;
+
   padding: 4% 3%;
   padding-top: 7%;
   border: 0.5px solid #dbd8d8;
@@ -28,7 +30,7 @@
 @media(max-width:700px){
   
   .login-form {
-  width:100%;
+  width:auto;
 padding: 2% 5%;
   padding-top: 7%;
   /* background: gainsboro; */
@@ -36,7 +38,7 @@ padding: 2% 5%;
 }
 .login-form-container {
   background: transparent;
-  width: 100%;
+  width: auto;
   height: auto;
   display: flex;
   justify-content: center;

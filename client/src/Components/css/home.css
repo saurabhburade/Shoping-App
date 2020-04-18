@@ -16,7 +16,7 @@ z-index: 99;
   position: absolute;
   top: 5%;
   left: 0;
-  background: url("../images/Web 1920 – 1.svg");
+  background: url("../images/Web 1920 – 1.svg") no-repeat;
   /* background-size: cover; */
   background-position-x: 0px;
   opacity: 0.7;
@@ -32,8 +32,6 @@ z-index: 99;
   font-size: 8em;
   font-weight: bold;
 
-  /* opacity: ; */
-  /* z-index: 99; */
 }
 .home-subtitle{
     font-weight: 600;
@@ -48,9 +46,7 @@ z-index: 99;
 z-index: 99;
   padding:0% 5%;
   background: transparent;
-  /* justify-content: center; */
   align-items: center;
-  /* opacity: ; */
 }
 .home-title {
   height: 100%;
@@ -66,23 +62,18 @@ line-height: 95%;
     font-size: 1em;
     text-align: left;
 }
- .home-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* background: olive; */
-  background: url("../images/Web 1920 – 1.svg")repeat;
-  background-size: auto;
-  background-position-y: 100px;
-  opacity: 0.2;
-  z-index: -1;
+
+.home-container::after {
+position: absolute;
+  top: 115%;
+  left:-65%;
+  background: url("../images/Web 1920 – 1.svg") no-repeat;
+  background-position-x: 0px;
+  opacity: 0.3;
+  z-index: -99;
+
+  transform: scale(4);
   width: 100%;
   height: 100%;
-  transform: scale(3);
-    background-position-y: -75px;
-    background-position-x: -45px;
- 
-  /* transform: scale(2); */
-} 
+}
 }

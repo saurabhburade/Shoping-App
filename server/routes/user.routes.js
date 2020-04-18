@@ -106,7 +106,7 @@ router.get("/fetch", (req, res) => {
             res.status(200).json({
               arr,
               user: user[0],
-              
+              grpOrder:{},
             });
           }
         }

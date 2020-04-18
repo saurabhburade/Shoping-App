@@ -12,7 +12,9 @@ const cors=require('cors')
 const isAuth =require('./middlewares/isAuth');
 const bodyParser=require('body-parser');
 const path=require('path');
-const conn = mongoose.connect("mongodb://localhost/ShoppingApp", {
+require('dotenv').config();
+const MONGO_URI=process.env.MONGO_URI
+const conn = mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true, 
   useCreateIndex: true,

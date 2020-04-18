@@ -108,7 +108,7 @@ class Login extends Component {
             >
               <Input.Password
                 style={{
-                  width: 300
+                  width:" 18em !important"
                 }}
                 value={this.state.pass}
                 onChange={this.changePass}
