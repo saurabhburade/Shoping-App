@@ -4,7 +4,8 @@ const Admin = require("../models/admin.model.js");
 require("dotenv").config();
 const lodash = require("lodash");
 const bcrypt = require("bcrypt");
-const stripe = require("stripe")("sk_test_4dtRajw2ujrNWT3pHjxG9CGx00fsLCesJI");
+
+const stripe = require("stripe")(process.env.STRIPE_ROLE_KEY);
 
 const jwt = require("jsonwebtoken");
 const isAuth = require("../middlewares/isAuth");

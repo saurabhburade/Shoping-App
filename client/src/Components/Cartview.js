@@ -94,7 +94,7 @@ class Cartview extends Component {
             <br />
             {this.props.data.length !== 0 ? (
               <StripeCheckout
-                stripeKey="pk_test_MY0CvrDbKKXZg0IH14zk0Gu100Wk4rnFmy"
+              stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
                 token={this.makePayment}
                 amount={this.props.totalCart * 100}
                 name="Buy Fruits"
