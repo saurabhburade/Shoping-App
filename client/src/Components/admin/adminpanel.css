@@ -28,6 +28,10 @@ left: 0; */
 }
 .admin-form-products-container{
     flex-grow: 2;
+width:20em;
+display: flex;
+/* align-items: center; */
+    justify-content: center;
     /* background: gray; */
     
 }
@@ -107,6 +111,7 @@ left: 0; */
 }
 .add-product-form-container{
     height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,7 +127,7 @@ left: 0; */
   align-items: center;
         
 }
-@media(max-width:700px){
+@media(max-width:800px){
   .admin-panel-container{
     width: 100%;
     min-height: 100vh;

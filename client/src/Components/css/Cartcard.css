@@ -32,7 +32,7 @@
     align-items: center;
 }
 /* .cart-title,.cart-description */
-@media(max-width:700px){
+@media(max-width:800px){
 .cart-card {
   width: auto;
   height:auto ;

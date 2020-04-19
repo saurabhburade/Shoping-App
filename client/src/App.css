@@ -1,5 +1,7 @@
 .App {
+  width: auto;
   text-align: center;
+    overflow: hidden !important;
   
 }
 *::-webkit-scrollbar{
@@ -15,7 +17,7 @@
   overflow: scroll;
   overflow-x: hidden;
 }
-.card-container::-webkit-scrollbar{
+/* .card-container::-webkit-scrollbar{
   display: block;
   width: 10px;
   background: rgb(243, 243, 243);
@@ -24,4 +26,4 @@
   background: #18110677;
   border-radius: 40px;
 
-}
+} */

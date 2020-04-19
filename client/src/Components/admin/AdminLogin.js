@@ -128,7 +128,9 @@ class AdminLogin extends Component {
             >
               <Input.Password
                 style={{
-                  width: 300,
+
+                  width: " 18em"
+
                 }}
                 value={this.state.pass}
                 onChange={this.changePass}

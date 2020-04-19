@@ -69,7 +69,7 @@ if (
       }
     })
     .catch((err) => {
-      if (err && !isAuthorised()) {
+      if (err) {
         this.openNotification("topRight");
       }
     });

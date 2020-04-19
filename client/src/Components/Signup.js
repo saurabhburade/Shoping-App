@@ -172,7 +172,8 @@ class Signup extends Component {
                 onChange={this.changePass}
                 placeholder="Password"
                 style={{
-                  width: 300
+                  width: " 18em"
+
                 }}
               />
             </Form.Item>
@@ -186,7 +187,8 @@ class Signup extends Component {
               <Input.Password
                 placeholder="Confirm Password"
                 style={{
-                  width: 300
+                  width: " 18em"
+
                 }}
                 value={this.state.confPass}
                 onChange={this.changeConfPass}

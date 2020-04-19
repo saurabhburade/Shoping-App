@@ -55,7 +55,11 @@ function App(props) {
     </Router>
   );
 }
-
+const mapStateToProps = (state) => {
+  return {
+    badgeValue: state.user.cartCount,
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchProfile: () => dispatch(fetchProfile(localStorage.getItem("jwt"))),
@@ -63,5 +67,5 @@ const mapDispatchToProps = (dispatch) => {
     fetchAdminProfile: () => dispatch(fetchAdminProfile()),
   };
 };
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 // export default App;

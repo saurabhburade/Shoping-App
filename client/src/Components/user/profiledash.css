@@ -194,7 +194,7 @@ width: 100%;
     justify-content: center;
     align-items: center;
 }
-@media(max-width:700px){
+@media(max-width:800px){
 .user-dash-container{
     width: 100%;
     /* min-height: 90vh; */

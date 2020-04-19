@@ -6,19 +6,28 @@
     margin-top: 1%;
 }
 .cart-precess{
-   width:auto;
+   /* width:auto; */
+   height: 100%;
    
    border: 1px solid rgb(189, 183, 183);
    margin: 1% ;
    padding: 2%;
 }
-@media(max-width:700px){
+.cart-card-container{
+    height: 100%;
+}
+@media(max-width:800px){
 .cart-view-container{
+    /* height: 100%; */
     flex-direction: column;
-   transform: scale(1);
-   padding: 5%;
+    justify-content: space-between;
+   /* transform: scale(1); */
+   padding: 2%;
+    /* min-height: 100vh !important; */
+   
     /* display: flex;
     justify-content: space-between; */
 }
+
 
 }
